@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+</head>
+<body>
+    
+    <button id="btn-pagar">Pagar</button>
+
+
+
+    <script>
+
+        const btn = document.getElementById("btn-pagar");
+
+        const irAPagar = async () =>{
+            try {
+                const res = await fetch("/generarPago",{method:'POST'})
+                const data = await res.json()
+                window.location.href=data.url
+
+            } catch (error) {
+                console.log("Error al ir a realizar el pago desde boton")
+                console.log(error)
+            }
+            
+        }
+
+        btn.addEventListener("click",irAPagar)
+
+        
+    </script>
+</body>
+</html>
